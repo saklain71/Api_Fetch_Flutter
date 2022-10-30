@@ -1,6 +1,7 @@
-import 'package:api_fetch_practice/ui/post_method.dart';
-import 'package:api_fetch_practice/ui/post_method_complex.dart';
-import 'package:api_fetch_practice/ui/post_source.dart';
+import 'package:api_fetch_practice/data_model/post_method.dart';
+import 'package:api_fetch_practice/model/post_method_complex.dart';
+import 'package:api_fetch_practice/data_model/post_source.dart';
+import 'package:api_fetch_practice/ui/new.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Posts"),
@@ -18,7 +20,7 @@ class HomePage extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           Post postList = snapshot.data;
           print("postlist >>>>>>>>>>>>>    ...... >>>>$postList");
-          if (postList == null) {
+          if (postList == null ) {
             return const Center(
               child: CircularProgressIndicator(),
             );
@@ -28,8 +30,15 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ListTile(
                   title: Text(postList.products![index].title.toString()),
-                  //subtitle: Text(postList[index].completed.toString()),
+                  //subtitle: Text(postList.products![index].images![0].toString()),
                   leading: Text(postList.products![index].id.toString()),
+               onTap: (){
+                 Navigator.push(
+                   context,
+                   MaterialPageRoute(builder: (context) => NewPage(product: postList.products![index].images![index].toString() ,)),
+                 );
+               },
+
                 );
               });
         },

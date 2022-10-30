@@ -1,10 +1,11 @@
 
 //mport 'package:api_fetch_practice/ui/post_method.dart';
-import 'package:api_fetch_practice/ui/post_method_complex.dart';
+import 'package:api_fetch_practice/model/post_method_complex.dart';
 import 'package:http/http.dart' as http;
 //import 'package:http/http.dart';
 
 class PostDataSource{
+
    static Future<Post?> getData()async{
     try{
       var url = Uri.parse('https://dummyjson.com/products');
