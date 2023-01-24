@@ -1,7 +1,6 @@
 
-import 'dart:convert';
-
 import 'package:api_fetch_practice/ui/details.dart';
+import 'package:api_fetch_practice/ui/slider.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,6 +24,8 @@ class MyApp extends StatelessWidget {
 
         home: Scaffold(
           body: HomePage()
+         // body: SliderPage();
+
         )
     );
   }
