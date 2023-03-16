@@ -7,8 +7,6 @@ class NewPage extends StatelessWidget {
   var product;
   NewPage({this.product});
 
-
-
   @override
   Widget build(BuildContext context) {
     var images = product.images;

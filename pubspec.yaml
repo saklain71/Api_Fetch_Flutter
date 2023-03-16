@@ -12,7 +12,6 @@ dependencies:
     sdk: flutter
   http: ^0.13.5
   carousel_slider: ^4.2.1
-
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
