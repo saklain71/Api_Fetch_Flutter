@@ -64,11 +64,11 @@ class Product {
   List<String>? images;
 
   factory Product.fromJson(Map<String, dynamic> json) => Product(
-    id: json["id"],
-    title: json["title"],
-    description: json["description"],
-    price: json["price"],
-    discountPercentage: json["discountPercentage"].toDouble(),
+    id: json["id"]??0,
+    title: json["title"]??'',
+    description: json["description"]??'',
+    price: json["price"]??0,
+    discountPercentage: json["discountPercentage"]??0.0.toDouble(),
     rating: json["rating"].toDouble(),
     stock: json["stock"],
     brand: json["brand"],

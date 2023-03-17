@@ -6,14 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'Carosel.dart';
 
-final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
-];
+
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -29,27 +22,29 @@ class HomePage extends StatelessWidget {
       body:FutureBuilder(
         future:PostDataSource.getData() ,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-          Post postList = snapshot.data;
-          print("postlist >>>>>>>>>>>>> ...... >>>>$postList");
-          // if (postList == null ) {
+          Post post = snapshot.data;
+          print("productList >>>>>>>>>>>>> ...... >>>>$post");
+          // if (productList == null ) {
           //   return const Center(
           //     child: CircularProgressIndicator(),
           //   );
           // }
-
-          return ListView.builder(
-              itemCount: postList.products?.length,
+         List<Product> productList=post.products??[];
+         productList[1];
+          return productList.isEmpty?Container():ListView.builder(
+              itemCount: post.products?.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(postList.products![index].title.toString()),
-                  //subtitle: Text(postList.products![index].images![0].toString()),
-                  leading: Text(postList.products![index].id.toString()),
+                  title: Text(productList[index].title.toString()),
+                  //subtitle: Text(productList.products![index].images![0].toString()),
+                  leading: Text(productList[index].id.toString()),
                onTap: (){
                  Navigator.push(
                    context,
-                   //MaterialPageRoute(builder: (context) => NewPage(product: postList.products![index].images![index].toString() ,)),
-                   //MaterialPageRoute(builder: (context) => NewPage(product: postList.products![index],)),
-                  MaterialPageRoute(builder: (context) => CaroselWithDots(imgList: postList.products![index].images!)));
+                   //MaterialPageRoute(builder: (context) => NewPage(product: productList.products![index].images![index].toString() ,)),
+                //   MaterialPageRoute(builder: (context) => NewPage(product: productList.products![index],)),
+                  MaterialPageRoute(builder: (context) => CaroselWithDots(imgList: productList[index]))
+                  );
                  },
                 );
               });
